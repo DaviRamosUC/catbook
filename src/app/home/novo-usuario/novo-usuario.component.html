@@ -1,16 +1,36 @@
 <h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4>
-<form class="form mt-4">
+
+<form class="form mt-4" [formGroup]="novoUsuarioForm" (ngSubmit)="cadastrar()">
   <div class="form-group mb-3">
-    <input placeholder="E-mail" type="email" class="form-control" />
+    <input
+      placeholder="E-mail"
+      type="email"
+      class="form-control"
+      formControlName="email"
+    />
   </div>
   <div class="form-group mb-3">
-    <input placeholder="Nome Completo" class="form-control" />
+    <input
+      placeholder="Nome Completo"
+      class="form-control"
+      formControlName="fullName"
+    />
   </div>
   <div class="form-group mb-3">
-    <input type="text" placeholder="Usuário" class="form-control" />
+    <input
+      type="text"
+      placeholder="Usuário"
+      class="form-control"
+      formControlName="userName"
+    />
   </div>
   <div class="form-group mb-3">
-    <input type="password" placeholder="Senha" class="form-control" />
+    <input
+      type="password"
+      placeholder="Senha"
+      class="form-control"
+      formControlName="password"
+    />
   </div>
   <div class="d-grid gap-2">
     <button type="submit" class="btn btn-primary">Cadastrar</button>
