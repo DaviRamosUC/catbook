@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Animal } from '../animais';
+import { AnimaisService } from '../animais.service';
 
 @Component({
   selector: 'app-detalhe-animal',
@@ -6,10 +10,16 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./detalhe-animal.component.css']
 })
 export class DetalheAnimalComponent implements OnInit {
+  animalID!: number;
+  animal$!: Observable<Animal>;
 
-  constructor() { }
+  constructor(
+    private animaisService: AnimaisService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.animalID = this.activatedRoute.snapshot.params.animalId;
+    this.animal$ = this.animaisService.buscaPorId(this.animalID);
   }
-
 }
