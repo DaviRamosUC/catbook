@@ -10,7 +10,7 @@ import { AnimaisService } from '../animais.service';
   styleUrls: ['./detalhe-animal.component.css']
 })
 export class DetalheAnimalComponent implements OnInit {
-  animalID!: number;
+  animalId!: number;
   animal$!: Observable<Animal>;
 
   constructor(
@@ -20,20 +20,20 @@ export class DetalheAnimalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.animalID = this.activatedRoute.snapshot.params.animalId;
-    this.animal$ = this.animaisService.buscaPorId(this.animalID);
+    this.animalId = this.activatedRoute.snapshot.params.animalId;
+    this.animal$ = this.animaisService.buscaPorId(this.animalId);
   }
 
   curtir() {
-    this.animaisService.curtir(this.animalID).subscribe((curtida) => {
+    this.animaisService.curtir(this.animalId).subscribe((curtida) => {
       if (curtida) {
-        this.animal$ = this.animaisService.buscaPorId(this.animalID);
+        this.animal$ = this.animaisService.buscaPorId(this.animalId);
       }
     });
   }
 
   excluir() {
-    this.animaisService.excluiAnimal(this.animalID).subscribe(
+    this.animaisService.excluiAnimal(this.animalId).subscribe(
       () => {
         this.router.navigate(['/animais/']);
       },
